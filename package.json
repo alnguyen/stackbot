@@ -45,6 +45,9 @@
       "helpers",
       "expect",
       "should"
+    ],
+    "ignore": [
+      "/lib/"
     ]
   },
   "author": "nguyen.alan@me.com",
