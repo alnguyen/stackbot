@@ -62,7 +62,8 @@ This bot demonstrates many of the core features of Botkit:
     -> http://howdy.ai/botkit
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+// Loads environment files
+require('envc')({});
 
 if (!process.env.token) {
     console.log('Error: Specify token in environment');
