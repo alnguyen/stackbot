@@ -1,5 +1,8 @@
+var constants = require('./constants')
+
 // Loads environment files
 require('envc')({})
+var request = require('request')
 
 if (!process.env.token) {
   console.log('Error: Specify token in environment')
@@ -19,12 +22,22 @@ var bot = controller.spawn({
 
 function logError (err, msg) {
   if (err) {
-    var message = msg || 'Warning Will Robinson!'
+    var message = msg || 'Danger Will Robinson!'
     bot.botkit.log(message, err)
   }
 }
 
-controller.hears(['hello', 'hi'], 'direct_message,direct_mention,mention', function (bot, message) {
+controller.hears([constants.LOOKUP], constants.ADDRESSED, function (bot, message) {
+  var text = message.text
+  // Verify first word is lookup
+  var firstWord = text.substr(0, text.indexOf(' '))
+  if (firstWord === constants.LOOKUP) {
+    var test = text.substr(text.indexOf(' ') + 1)
+    console.log('raw rawr rawr', test)
+  }
+})
+
+controller.hears(['hello', 'hi'], constants.ADDRESSED, function (bot, message) {
   bot.api.reactions.add({
     timestamp: message.ts,
     channel: message.channel,
@@ -46,7 +59,7 @@ controller.hears(['hello', 'hi'], 'direct_message,direct_mention,mention', funct
   })
 })
 
-controller.hears(['call me (.*)'], 'direct_message,direct_mention,mention', function (bot, message) {
+controller.hears(['call me (.*)'], constants.ADDRESSED, function (bot, message) {
   var matches = message.text.match(/call me (.*)/i)
   var name = matches[1]
   controller.storage.users.get(message.user, function (err, user) {
@@ -64,18 +77,7 @@ controller.hears(['call me (.*)'], 'direct_message,direct_mention,mention', func
   })
 })
 
-controller.hears(['what is my name', 'who am i'], 'direct_message,direct_mention,mention', function (bot, message) {
-  controller.storage.users.get(message.user, function (err, user) {
-    logError(err, 'Failed to get user')
-    if (user && user.name) {
-      bot.reply(message, 'Your name is ' + user.name)
-    } else {
-      bot.reply(message, "I don't know yet!")
-    }
-  })
-})
-
-controller.hears(['shutdown'], 'direct_message,direct_mention,mention', function (bot, message) {
+controller.hears(['shutdown'], constants.ADDRESSED, function (bot, message) {
   bot.startConversation(message, function (err, convo) {
     logError(err, 'Failed to start conversation')
     convo.ask('Are you sure you want me to shutdown?', [
@@ -101,7 +103,7 @@ controller.hears(['shutdown'], 'direct_message,direct_mention,mention', function
   })
 })
 
-controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], 'direct_message,direct_mention,mention', function (bot, message) {
+controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'], constants.ADDRESSED, function (bot, message) {
   var hostname = os.hostname()
   var uptime = formatUptime(process.uptime())
 
