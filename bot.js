@@ -32,8 +32,61 @@ controller.hears([constants.LOOKUP], constants.ADDRESSED, function (bot, message
   // Verify first word is lookup
   var firstWord = text.substr(0, text.indexOf(' '))
   if (firstWord === constants.LOOKUP) {
-    var test = text.substr(text.indexOf(' ') + 1)
-    console.log('raw rawr rawr', test)
+    var search = text.substr(text.indexOf(' ') + 1)
+    var questionQS = {
+      order: 'desc',
+      q: search,
+      site: constants.API.stack.site,
+      sort: 'relevance'
+    }
+
+    request.get({
+      url: `${constants.API.stack.url}/search/advanced`,
+      gzip: true,
+      qs: questionQS,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    }, (err, res, body) => {
+      if (err) {
+        logError('Error With Stack Response', err)
+      }
+      var results = JSON.parse(body)
+
+      // Answer exists
+      if (results.items.length) {
+        var question = results.items.find((item) => item.is_answered)
+        if (!question) {
+          bot.reply('No answered result found!')
+          return
+        }
+        var resultQuestion = question.title
+        var answerQS = {
+          filter: 'withbody',
+          order: 'desc',
+          site: constants.API.stack.site,
+          sort: 'activity'
+        }
+        request.get({
+          url: `${constants.API.stack.url}/answers/${question.accepted_answer_id}`,
+          gzip: true,
+          qs: answerQS,
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          }
+        }, (err, res, body) => {
+          if (err) {
+            logError('Error With Stack Response', err)
+          }
+          var answers = JSON.parse(body)
+          if (answers.items.length) {
+            var answer = answers.items[0]
+            bot.reply(message, `*Q:* \`${resultQuestion}\``)
+            bot.reply(message, `*A:*\n\`\`\`${answer.body}\`\`\``)
+          }
+        })
+      }
+    })
   }
 })
 

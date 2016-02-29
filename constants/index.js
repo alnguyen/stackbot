@@ -10,5 +10,10 @@ module.exports = {
   ],
 
   // -- APIs
-  STACK: 'https://api.stackexchange.com/2.2/'
+  API: {
+    stack: {
+      url: 'https://api.stackexchange.com/2.2',
+      site: 'stackoverflow'
+    }
+  }
 }
