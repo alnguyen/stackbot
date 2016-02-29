@@ -50,12 +50,14 @@ controller.hears([constants.LOOKUP], constants.ADDRESSED, function (bot, message
     }, (err, res, body) => {
       if (err) {
         logError('Error With Stack Response', err)
+        bot.reply('Error: You must construct additional pylons!')
+        return
       }
       var results = JSON.parse(body)
 
       // Answer exists
       if (results.items.length) {
-        var question = results.items.find((item) => item.is_answered)
+        var question = results.items.find((item) => item.is_answered && item.accepted_answer_id)
         if (!question) {
           bot.reply('No answered result found!')
           return
@@ -77,8 +79,11 @@ controller.hears([constants.LOOKUP], constants.ADDRESSED, function (bot, message
         }, (err, res, body) => {
           if (err) {
             logError('Error With Stack Response', err)
+            bot.reply('Error: You must construct additional pylons!')
+            return
           }
           var answers = JSON.parse(body)
+
           if (answers.items.length) {
             var answer = answers.items[0]
             bot.reply(message, `*Q:* \`${resultQuestion}\``)
