@@ -15,5 +15,10 @@ module.exports = {
       url: 'https://api.stackexchange.com/2.2',
       site: 'stackoverflow'
     }
+  },
+
+  // -- REGEX
+  REGEX: {
+    pre_code: /(<pre><code>[^]*<\/code><\/pre>)/igm
   }
 }

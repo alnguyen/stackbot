@@ -86,8 +86,18 @@ controller.hears([constants.LOOKUP], constants.ADDRESSED, function (bot, message
 
           if (answers.items.length) {
             var answer = answers.items[0]
-            bot.reply(message, `*Q:* \`${resultQuestion}\``)
-            bot.reply(message, `*A:*\n\`\`\`${answer.body}\`\`\``)
+            var pieces = answer.body.split(constants.REGEX.pre_code)
+            var stripped = pieces.map((piece) => {
+              if (constants.REGEX.pre_code.test(piece)) {
+                var codeBlock = piece.replace(/<pre><code>/igm, '```')
+                codeBlock = codeBlock.replace(/<\/code><\/pre>/igm, '```')
+                return codeBlock
+              }
+              return piece.replace(/<(?:.|\n)*?>/igm, '')
+            }).join('')
+
+            bot.reply(message, `*Q:* \`${resultQuestion}\`\n`)
+            bot.reply(message, `*A:* ${stripped}`)
           }
         })
       }
