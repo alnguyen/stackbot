@@ -93,7 +93,9 @@ controller.hears([constants.LOOKUP], constants.ADDRESSED, function (bot, message
                 codeBlock = codeBlock.replace(/<\/code><\/pre>/igm, '```')
                 return codeBlock
               }
-              return piece.replace(/<(?:.|\n)*?>/igm, '')
+              var textBlock = piece.replace(/<\/*code>/igm, '`')
+              textBlock = textBlock.replace(/(<([^>]+)>)/igm, '')
+              return textBlock
             }).join('')
 
             bot.reply(message, `*Q:* \`${resultQuestion}\`\n`)
