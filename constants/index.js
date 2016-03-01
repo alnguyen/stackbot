@@ -19,6 +19,6 @@ module.exports = {
 
   // -- REGEX
   REGEX: {
-    pre_code: /(<pre><code>[^]*<\/code><\/pre>)/igm
+    pre_code: /(<pre><code>[^]*?<\/code>{1}?<\/pre>)/igm
   }
 }
