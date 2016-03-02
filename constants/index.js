@@ -1,6 +1,7 @@
 module.exports = {
   // -- COMMANDS
   LOOKUP: 'lookup',
+  DEFINE: 'define',
 
   // -- EVENTS
   ADDRESSED: [
@@ -14,6 +15,9 @@ module.exports = {
     stack: {
       url: 'https://api.stackexchange.com/2.2',
       site: 'stackoverflow'
+    },
+    urban: {
+      url: 'http://api.urbandictionary.com/v0/define'
     }
   },
 
