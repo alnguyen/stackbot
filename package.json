@@ -46,9 +46,7 @@
       "expect",
       "should"
     ],
-    "ignore": [
-      "/lib/"
-    ]
+    "ignore": []
   },
   "author": "nguyen.alan@me.com",
   "license": "MIT"
