@@ -21,11 +21,11 @@ Getting Started
 
 1. Check out the repo
 
-`git clone git@github.com:alnguyen/stackbot.git`
+  `git clone git@github.com:alnguyen/stackbot.git`
 
 1. Enter the directory and install the dependencies
 
-`npm install`
+  `npm install`
 
 1. [Setup the bot integration on slack](https://my.slack.com/services/new/bot)
 
