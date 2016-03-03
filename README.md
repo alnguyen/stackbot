@@ -10,11 +10,11 @@ Features
 
 * Urban Dictionary Definitions
 
-`define <word or phrase>`
+  `define <word or phrase>`
 
 * Stack Overflow Answers
 
-`lookup [tag] <question>`
+  `lookup [tag] <question>`
 
 Getting Started
 ---------------
