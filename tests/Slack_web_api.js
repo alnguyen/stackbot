@@ -42,9 +42,7 @@ describe('Botkit', function () {
     })
 
     controller
-      .spawn({
-        token: token
-      })
+      .spawn({token: token})
       .startRTM(function (err, bot, payload) {
         expect(err).to.be.null
         expect(bot).to.exist

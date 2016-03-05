@@ -19,7 +19,7 @@ module.exports = function (bot, message) {
     }
 
     request.get({
-      url: `${constants.API.urban.url}`,
+      url: `${constants.API.urban.host}`,
       gzip: true,
       qs: defineQS,
       headers: {

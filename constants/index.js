@@ -13,11 +13,11 @@ module.exports = {
   // -- APIs
   API: {
     stack: {
-      url: 'https://api.stackexchange.com/2.2',
+      host: 'https://api.stackexchange.com',
       site: 'stackoverflow'
     },
     urban: {
-      url: 'http://api.urbandictionary.com/v0/define'
+      host: 'http://api.urbandictionary.com/v0/define'
     }
   },
 
