@@ -1,4 +1,4 @@
-var should = require('should')
+var expect = require('chai').expect
 var Botkit = require('../')
 var path = require('path')
 var tmpdir = require('os').tmpdir()
@@ -10,14 +10,14 @@ var token = process.env.token
 
 describe('Test', function () {
   it('should have a token', function (done) {
-    should.exist(token)
+    expect(token).to.exist
     done()
   })
 
   it('should have Botkit instance', function (done) {
-    should.exist(Botkit)
-    should.exist(Botkit.core)
-    should.exist(Botkit.slackbot)
+    expect(Botkit).to.exist
+    expect(Botkit.core).to.exist
+    expect(Botkit.slackbot).to.exist
     done()
   })
 })
@@ -30,13 +30,13 @@ describe('Botkit', function () {
     var openIsCalled = false
 
     controller.on('rtm_open', function (bot) {
-      should.exist(bot)
+      expect(bot).to.exist
       openIsCalled = true
     })
 
     controller.on('rtm_close', function (bot) {
-      should.exist(bot)
-      openIsCalled.should.be.true
+      expect(bot).to.exist
+      expect(openIsCalled).to.equal(true)
       controller.shutdown()
       done()
     })
@@ -46,8 +46,8 @@ describe('Botkit', function () {
         token: token
       })
       .startRTM(function (err, bot, payload) {
-        (err === null).should.be.true
-        should.exist(bot)
+        expect(err).to.be.null
+        expect(bot).to.exist
         bot.closeRTM()
       })
   })
@@ -58,12 +58,9 @@ describe('Botkit', function () {
     var controller = Botkit.slackbot({debug: false})
 
     controller
-      .spawn({
-        token: '1234'
-      })
+      .spawn({token: '1234'})
       .startRTM(function (err, bot, payload) {
-        should.exist(err)
-
+        expect(err).to.exist
         controller.shutdown()
         done()
       })
@@ -87,17 +84,14 @@ describe('Log', function () {
     })
 
     controller
-      .spawn({
-        token: '1234'
-      })
+      .spawn({token: '1234'})
       .startRTM(function (err, bot, payload) {
-        should.exist(err)
-
+        expect(err).to.exist
         controller.shutdown()
 
         fs.readFile(logFile, 'utf8', function (err, res) {
-          (err === null).should.be.true
-          should.exist(res)
+          expect(err).to.be.null
+          expect(res).to.exist
           done()
         })
       })

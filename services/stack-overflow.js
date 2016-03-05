@@ -1,6 +1,13 @@
 var request = require('request')
 var constants = require('../constants')
 
+const answerQS = {
+  filter: 'withbody',
+  order: 'desc',
+  site: constants.API.stack.site,
+  sort: 'activity'
+}
+
 function logError (bot, err, msg) {
   if (err) {
     var message = msg || 'Danger Will Robinson!'
@@ -44,12 +51,7 @@ module.exports = function (bot, message) {
           return
         }
         var resultQuestion = question.title
-        var answerQS = {
-          filter: 'withbody',
-          order: 'desc',
-          site: constants.API.stack.site,
-          sort: 'activity'
-        }
+
         request.get({
           url: `${constants.API.stack.url}/answers/${question.accepted_answer_id}`,
           gzip: true,
