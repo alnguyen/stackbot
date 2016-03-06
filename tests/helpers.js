@@ -1,5 +1,5 @@
 var constants = require('../constants')
-var fixtures = require('./fixtures')
+var fixtures = require('./fixtures').stackOverflow
 var nock = require('nock')
 var clearNock = nock.cleanAll
 
