@@ -1,5 +1,5 @@
 require('envc')({})
-// var expect = require('chai').expect
+var expect = require('chai').expect
 var helpers = require('./helpers')
 var service = require('../services').stackOverflow
 var sinon = require('sinon')
@@ -8,10 +8,10 @@ const USER = 'U04N026S8'
 const CHANNEL = 'C04N12DCF'
 const fakeBot = {
   botkit: { log: function () {} },
-  reply: function (a, b) {}
+  reply: function (a, b) { return }
 }
 
-describe.only('StackOverflow', function () {
+describe('StackOverflow', function () {
   beforeEach(function (done) {
     helpers.clearNock()
     done()
@@ -30,10 +30,10 @@ describe.only('StackOverflow', function () {
       ts: '1457155238.000002',
       team: 'T04N12D43'
     }
-
-    var mock = sinon.mock(fakeBot)
-    mock.expects('reply').twice()
-    service(fakeBot, message)
-    mock.verify()
+    var replySpy = sinon.spy(fakeBot, 'reply')
+    service(fakeBot, message, function () {
+      expect(replySpy.called).to.equal(true)
+      done()
+    })
   })
 })
