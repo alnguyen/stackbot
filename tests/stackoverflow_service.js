@@ -17,13 +17,10 @@ const MESSAGE = {
 }
 const fakeBot = {
   botkit: { log: function () {} },
-  reply: function (msg, reply) {
-    console.log({msg, reply})
-    return
-  }
+  reply: function (msg, reply) { return }
 }
 
-describe.only('StackOverflow', function () {
+describe('StackOverflow', function () {
   var replySpy = sinon.spy(fakeBot, 'reply')
   beforeEach((done) => {
     helpers.clearNock()
