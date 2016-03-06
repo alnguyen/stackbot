@@ -38,16 +38,13 @@ function requestQuestions (bot, message, search, callback) {
       return callback(err)
     }
     var results = JSON.parse(body)
-    if (results.items.length) {
-      var question = results.items.find((item) => item.is_answered && item.accepted_answer_id)
-      if (!question) {
-        var msg = 'No answered result found!'
-        console.log('lskdjflskdfj')
-        bot.reply(message, msg)
-        return callback(msg)
-      }
-      callback(null, bot, message, question)
+    var question = results.items.find((item) => item.is_answered && item.accepted_answer_id)
+    if (!question) {
+      var msg = 'No relevant result found. :frowning: :panda_face:'
+      bot.reply(message, msg)
+      return callback(msg)
     }
+    callback(null, bot, message, question)
   })
 }
 
