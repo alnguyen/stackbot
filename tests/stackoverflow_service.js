@@ -12,12 +12,12 @@ const fakeBot = {
 }
 
 describe('StackOverflow', function () {
-  beforeEach(function (done) {
+  beforeEach((done) => {
     helpers.clearNock()
     done()
   })
 
-  it('returns an accepted answer if present', function (done) {
+  it('returns an accepted answer if present', (done) => {
     var question = 'lookup test'
     helpers.mockQuestionWithAnswer(question)
     helpers.mockAcceptedAnswer()
@@ -31,7 +31,7 @@ describe('StackOverflow', function () {
       team: 'T04N12D43'
     }
     var replySpy = sinon.spy(fakeBot, 'reply')
-    service(fakeBot, message, function () {
+    service(fakeBot, message, () => {
       expect(replySpy.called).to.equal(true)
       done()
     })
