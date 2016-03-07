@@ -103,7 +103,6 @@ module.exports = function (bot, message, cb) {
   var firstWord = text.substr(0, text.indexOf(' '))
   if (firstWord === constants.LOOKUP) {
     var search = text.substr(text.indexOf(' ') + 1)
-
     async.waterfall([
       requestQuestions.bind(null, bot, message, search),
       requestAnswers,

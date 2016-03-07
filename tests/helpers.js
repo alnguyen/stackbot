@@ -5,14 +5,14 @@ var clearNock = nock.cleanAll
 
 const ACCEPTED_ANSWER_ID = 30000977
 
-// -- TODO: Get query strings to work
 function mockQuestionWithAnswer () {
+  console.log('mocking: ', fixtures.stackQuestionWithAnswer)
   nock(constants.API.stack.host)
     .get('/2.2/search/advanced')
     .query(true)
     .reply(
       200,
-      fixtures.stackQuestionWithAnswer
+      fixtures.stackOverflow.stackQuestionWithAnswer
     )
 }
 
@@ -32,7 +32,7 @@ function mockAcceptedAnswer () {
     .query(true)
     .reply(
       200,
-      fixtures.stackOverflowstackOverflowstackAcceptedAnswer
+      fixtures.stackOverflow.stackAcceptedAnswer
     )
 }
 
@@ -63,5 +63,4 @@ module.exports = {
   mockAcceptedAnswer,
   mockDefinitionWithResult,
   mockDefinitionWithoutResult
-
 }
