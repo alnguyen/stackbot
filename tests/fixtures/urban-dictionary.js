@@ -1,26 +1,15 @@
 var definitionWithResult = {
-  'items': [
+  'list': [
     {
-      'is_answered': false,
-      'title': 'random title'
-    },
-    {
-      'is_answered': true,
-      'accepted_answer_id': 30000977,
-      'title': 'answered title'
+      'definition': 'Active pharmaceutical ingredient. The part of a drug that causes the effect.',
+      'word': 'API',
+      'example': 'The API of aspirine is acetylsalicylic acid.'
     }
-  ],
-  'has_more': false
+  ]
 }
 
 var definitionWithoutResult = {
-  'items': [
-    {
-      'is_answered': false,
-      'title': 'the cake is a lie'
-    }
-  ],
-  'has_more': false
+  'list': []
 }
 
 module.exports = {

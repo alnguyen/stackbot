@@ -28,11 +28,10 @@ describe('UrbanDictionary', function () {
     done()
   })
 
-  xit('returns an accepted answer if present', (done) => {
-    helpers.mockQuestionWithAnswer()
-    helpers.mockAcceptedAnswer()
+  it('returns no result message if no definition present', (done) => {
+    helpers.mockDefinitionWithoutResult()
 
-    var expectedReply = '*Q:* `answered title`\n*A:* meatloaf ```pizza```'
+    var expectedReply = 'No result found.'
 
     service(fakeBot, MESSAGE, () => {
       expect(replySpy.calledOnce).to.equal(true)
@@ -41,9 +40,9 @@ describe('UrbanDictionary', function () {
     })
   })
 
-  xit('returns sad panda message if no relevant questions', (done) => {
-    helpers.mockQuestionWithoutAnswer()
-    var expectedReply = 'No relevant result found. :frowning: :panda_face:'
+  it('returns parsed result if definnition exists', (done) => {
+    helpers.mockDefinitionWithResult()
+    var expectedReply = '*1. API*\n\n*Definition*:\n```Active pharmaceutical ingredient. The part of a drug that causes the effect.```\n\n*Example*: ```The API of aspirine is acetylsalicylic acid.```'
     service(fakeBot, MESSAGE, () => {
       expect(replySpy.calledOnce).to.equal(true)
       expect(replySpy.calledWith(MESSAGE, expectedReply)).to.equal(true)

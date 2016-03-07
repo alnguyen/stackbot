@@ -1,5 +1,5 @@
 var constants = require('../constants')
-var fixtures = require('./fixtures').stackOverflow
+var fixtures = require('./fixtures')
 var nock = require('nock')
 var clearNock = nock.cleanAll
 
@@ -22,7 +22,7 @@ function mockQuestionWithoutAnswer () {
     .query(true)
     .reply(
       200,
-      fixtures.stackQuestionWithoutAnswer
+      fixtures.stackOverflow.stackQuestionWithoutAnswer
     )
 }
 
@@ -32,7 +32,27 @@ function mockAcceptedAnswer () {
     .query(true)
     .reply(
       200,
-      fixtures.stackAcceptedAnswer
+      fixtures.stackOverflowstackOverflowstackAcceptedAnswer
+    )
+}
+
+function mockDefinitionWithResult () {
+  nock(constants.API.urban.host)
+    .get('/v0/define')
+    .query(true)
+    .reply(
+      200,
+      fixtures.urbanDictionary.definitionWithResult
+    )
+}
+
+function mockDefinitionWithoutResult () {
+  nock(constants.API.urban.host)
+    .get('/v0/define')
+    .query(true)
+    .reply(
+      200,
+      fixtures.urbanDictionary.definitionWithoutResult
     )
 }
 
@@ -40,5 +60,8 @@ module.exports = {
   clearNock,
   mockQuestionWithAnswer,
   mockQuestionWithoutAnswer,
-  mockAcceptedAnswer
+  mockAcceptedAnswer,
+  mockDefinitionWithResult,
+  mockDefinitionWithoutResult
+
 }

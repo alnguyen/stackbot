@@ -17,7 +17,7 @@ module.exports = {
       site: 'stackoverflow'
     },
     urban: {
-      host: 'http://api.urbandictionary.com/v0/define'
+      host: 'http://api.urbandictionary.com'
     }
   },
 
