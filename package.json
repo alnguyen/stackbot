@@ -12,10 +12,13 @@
     "ws": "^1.0.1"
   },
   "devDependencies": {
+    "async": "^1.5.2",
+    "chai": "^3.5.0",
     "envc": "^2.4.1",
     "eslint": "^2.2.0",
     "mocha": "^2.4.5",
-    "should": "^8.0.2",
+    "nock": "^7.2.2",
+    "sinon": "^1.17.3",
     "snazzy": "^3.0.0",
     "winston": "^2.1.1"
   },
@@ -36,15 +39,16 @@
   ],
   "standard": {
     "global": [
-      "before",
-      "beforeEach",
       "after",
       "afterEach",
+      "before",
+      "beforeEach",
       "describe",
-      "it",
-      "helpers",
       "expect",
-      "should"
+      "helpers",
+      "it",
+      "should",
+      "xit"
     ],
     "ignore": []
   },

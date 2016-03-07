@@ -8,7 +8,7 @@ function logError (bot, err, msg) {
   }
 }
 
-module.exports = function (bot, message) {
+module.exports = function (bot, message, cb) {
   var text = message.text
   // Verify first word is lookup
   var firstWord = text.substr(0, text.indexOf(' '))
@@ -19,7 +19,7 @@ module.exports = function (bot, message) {
     }
 
     request.get({
-      url: `${constants.API.urban.url}`,
+      url: `${constants.API.urban.host}/v0/define`,
       gzip: true,
       qs: defineQS,
       headers: {
@@ -39,9 +39,11 @@ module.exports = function (bot, message) {
           reply += `*Definition*:\n\`\`\`${result.definition}\`\`\`\n\n`
           reply += `*Example*: \`\`\`${result.example}\`\`\``
           bot.reply(message, reply)
+          if (cb) cb()
         })
       } else {
-        bot.reply(message, 'No results found.')
+        bot.reply(message, 'No result found.')
+        if (cb) cb()
       }
     })
   }
