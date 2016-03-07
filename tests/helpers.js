@@ -6,13 +6,13 @@ var clearNock = nock.cleanAll
 const ACCEPTED_ANSWER_ID = 30000977
 
 function mockQuestionWithAnswer () {
-  console.log('mocking: ', fixtures.stackQuestionWithAnswer)
+  console.log('mocking: ', fixtures.questionWithAnswer)
   nock(constants.API.stack.host)
     .get('/2.2/search/advanced')
     .query(true)
     .reply(
       200,
-      fixtures.stackOverflow.stackQuestionWithAnswer
+      fixtures.stackOverflow.questionWithAnswer
     )
 }
 
@@ -22,7 +22,7 @@ function mockQuestionWithoutAnswer () {
     .query(true)
     .reply(
       200,
-      fixtures.stackOverflow.stackQuestionWithoutAnswer
+      fixtures.stackOverflow.questionWithoutAnswer
     )
 }
 
@@ -32,7 +32,7 @@ function mockAcceptedAnswer () {
     .query(true)
     .reply(
       200,
-      fixtures.stackOverflow.stackAcceptedAnswer
+      fixtures.stackOverflow.acceptedAnswer
     )
 }
 

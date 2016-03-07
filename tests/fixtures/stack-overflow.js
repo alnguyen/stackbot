@@ -1,4 +1,4 @@
-var stackQuestionWithAnswer = {
+var questionWithAnswer = {
   'items': [
     {
       'is_answered': false,
@@ -13,7 +13,7 @@ var stackQuestionWithAnswer = {
   'has_more': false
 }
 
-var stackQuestionWithoutAnswer = {
+var questionWithoutAnswer = {
   'items': [
     {
       'is_answered': false,
@@ -23,7 +23,7 @@ var stackQuestionWithoutAnswer = {
   'has_more': false
 }
 
-var stackAcceptedAnswer = {
+var acceptedAnswer = {
   'items': [
     {
       'is_accepted': true,
@@ -36,7 +36,7 @@ var stackAcceptedAnswer = {
 }
 
 module.exports = {
-  stackAcceptedAnswer,
-  stackQuestionWithAnswer,
-  stackQuestionWithoutAnswer
+  acceptedAnswer,
+  questionWithAnswer,
+  questionWithoutAnswer
 }
