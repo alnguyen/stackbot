@@ -1,15 +1,8 @@
-var request = require('request')
-var constants = require('../constants')
-var os = require('os')
-
 module.exports = function (bot, message, cb) {
-
-  var hostname = os.hostname()
   var uptime = formatUptime(process.uptime())
 
   bot.reply(message, ':robot_face: I am a bot named <@' + bot.identity.name + '>. I have been running for ' + uptime)
 }
-
 
 function formatUptime (uptime) {
   var unit = 'second'
