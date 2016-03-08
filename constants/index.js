@@ -2,6 +2,7 @@ module.exports = {
   // -- COMMANDS
   LOOKUP: 'lookup',
   DEFINE: 'define',
+  IDENTIFY: 'identify',
 
   // -- EVENTS
   ADDRESSED: [
