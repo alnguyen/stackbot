@@ -11,4 +11,3 @@ deploy:
   on:
     repo: alnguyen/stackbot
 	all_branches: true
-
