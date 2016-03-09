@@ -1,3 +1,12 @@
 language: node_js
 node_js:
-  - "4.3"
+- '4.3'
+deploy:
+  provider: codedeploy
+  access_key_id: AKIAJ2WVIUKPB3F4MOVA
+  secret_access_key:
+    secure: DJEi6cn5DkZDtPgMSNRr35mbxOIDMPu9wGA52efAMhZoOqE7WCVqoD7u7YPYv4LXxSQp+NG1BtsS7cbdY/lD9kB732ZTPXbLOzHudvxtwU5eLNlH5A6ywcO5/b15hz26iNgLJ4Kcuv5POLzc6G71Z0LyDs+SVfI6yIdW4C1o+BDjhHPmDJc6As9qx+ORzEnd3Se/ftBhGMaGUTtQ0PHrvYHhk3HQ6lr9cCLcWIGbwJRseEXK4a+w2uKroZBUZqHx09QhbwMKQzvpKbDdlZLOwsvdzVJ1gOCYYy/KzGp+V2jk+nid82iUNC6HQsQ+ZbJWI0ZTKqZ+OnhWNTthx+eLP5gDfu4y6tiNz3kHpgBf2wDw4a07YYyjAQdWyJUS5di2qoXRFDh5i8Aawceop42W/ABzEJSg7uKV2zMGFH7n/laxA+yg2DzVrp3sPbhL31dFXnZbZMpbnYZBy9lGvF69aqnCuz59LGUGTFsjIKUGpNviaOWcleqTikAS6NnnK/ttBsdI2W1i1W8ioe+PbtWgjvKgqI+WmIDeOtYJyp2tXWI9uN4da+y4AljAysqUFgYL+7vhAKghGE26qjPVMRG8vLiN/SLk65JcQd2sGAb6TLPjmfwVKjiGsqowGqBmLBmywgIqfVldbCxP6obMflhV55XNkm40ScSeEPFgOIDBPvo=
+  application: stackbot
+  deployment_group: stackbot
+  on:
+    repo: alnguyen/stackbot
