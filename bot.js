@@ -22,3 +22,4 @@ controller.spawn({
 controller.hears([constants.LOOKUP], constants.ADDRESSED, services.stackOverflow)
 controller.hears([constants.DEFINE], constants.ADDRESSED, services.urbanDictionary)
 controller.hears([constants.IDENTIFY], constants.ADDRESSED, services.identify)
+controller.hears([constants.ENABLE, constants.DISABLE], constants.ADDRESSED, services.admin)

@@ -4,6 +4,10 @@ module.exports = {
   DEFINE: 'define',
   IDENTIFY: 'identify',
 
+  // -- ADMINISTRATIVE
+  DISABLE: 'disable',
+  ENABLE: 'enable',
+
   // -- EVENTS
   ADDRESSED: [
     'direct_message',
