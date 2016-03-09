@@ -6,7 +6,6 @@ var clearNock = nock.cleanAll
 const ACCEPTED_ANSWER_ID = 30000977
 
 function mockQuestionWithAnswer () {
-  console.log('mocking: ', fixtures.questionWithAnswer)
   nock(constants.API.stack.host)
     .get('/2.2/search/advanced')
     .query(true)
