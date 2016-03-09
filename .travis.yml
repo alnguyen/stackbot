@@ -10,4 +10,4 @@ deploy:
   deployment_group: stackbot
   on:
     repo: alnguyen/stackbot
-	all_branches: true
+    all_branches: true
