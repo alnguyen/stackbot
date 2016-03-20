@@ -1,15 +1,26 @@
 var async = require('async')
 
-function disableService (bot, service, cb) {
+function disableService (bot, message, service, cb) {
   // Disables Service
-  console.log(`disable ${service}`)
-  cb()
+  bot.botkit.storage.services.save({
+    name: service,
+    disabled: true
+  }, () => {
+    bot.reply(message, `${service} has been disabled.`)
+    cb()
+  })
 }
 
-function enableService (bot, service, cb) {
+function enableService (bot, message, service, cb) {
   // Enables Service
   console.log(`enable ${service}`)
-  cb()
+  bot.botkit.storage.services.save({
+    name: service,
+    disabled: false
+  }, () => {
+    bot.reply(message, `${service} has been enabled.`)
+    cb()
+  })
 }
 
 var accessMethods = {
@@ -20,7 +31,7 @@ var accessMethods = {
 function getUser (bot, message, service, cb) {
   bot.api.users.info({user: message.user}, (err, res) => {
     if (err) logError(bot, err, 'Error querying user info')
-    if (res.user.is_admin) return cb(null, bot, service)
+    if (res.user.is_admin) return cb(null, bot, message, service)
     bot.reply(message, 'This functionality is above your paygrade.')
   })
 }

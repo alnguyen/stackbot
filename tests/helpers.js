@@ -55,11 +55,22 @@ function mockDefinitionWithoutResult () {
     )
 }
 
+function mockStackUser () {
+  nock(constants.API.stack.host)
+    .get('/2.2/users/users.info')
+    .query(true)
+    .reply(
+      200,
+      fixtures.slack.user
+    )
+}
+
 module.exports = {
   clearNock,
   mockQuestionWithAnswer,
   mockQuestionWithoutAnswer,
   mockAcceptedAnswer,
   mockDefinitionWithResult,
-  mockDefinitionWithoutResult
+  mockDefinitionWithoutResult,
+  mockStackUser
 }
