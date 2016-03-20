@@ -40,6 +40,17 @@ Getting Started
 
 _Note:_ the bot needs to be invited into any chat room before it can respond to you
 
+Administration
+--------------
+
+You can enable/disable certain features
+
+`enable [stack | urban]`
+
+`disable [stack | urban]`
+
+Note: Only persons with admin status in slack may use this features.
+
 Additional Information
 ----------------------
 
