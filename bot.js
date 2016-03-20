@@ -1,8 +1,8 @@
-var constants = require('./constants')
-var services = require('./services')
-
 // Loads environment files
 require('envc')({})
+
+var constants = require('./constants')
+var services = require('./services')
 
 if (!process.env.token) {
   console.log('Error: Specify token in environment')

@@ -1,11 +1,15 @@
-function disableService (service) {
+var async = require('async')
+
+function disableService (bot, service, cb) {
   // Disables Service
   console.log(`disable ${service}`)
+  cb()
 }
 
-function enableService (service) {
+function enableService (bot, service, cb) {
   // Enables Service
   console.log(`enable ${service}`)
+  cb()
 }
 
 var accessMethods = {
@@ -13,23 +17,11 @@ var accessMethods = {
   enable: enableService
 }
 
-function getUser (bot, userId) {
-  bot.botkit.storage.users.get(userId, (err, res) => {
-    if (err) logError(bot, err, 'Error accessing user info')
-    if (!res) {
-      // No user stored -- save it
-      var slackUser = queryUserInfo(bot, userId)
-      console.log({userId, slackUser})
-      return slackUser
-    }
-  })
-}
-
-function queryUserInfo (bot, userId) {
-  bot.api.users.info({user: userId}, (err, res) => {
+function getUser (bot, message, service, cb) {
+  bot.api.users.info({user: message.user}, (err, res) => {
     if (err) logError(bot, err, 'Error querying user info')
-    console.log({res})
-    return res
+    if (res.user.is_admin) return cb(null, bot, service)
+    bot.reply(message, 'This functionality is above your paygrade.')
   })
 }
 
@@ -44,10 +36,11 @@ module.exports = function (bot, message, cb) {
   var text = message.text
   var action = text.substr(0, text.indexOf(' '))
   var service = text.substr(text.indexOf(' ') + 1)
-  var user = getUser(bot, message.user)
-
-  console.log('after query', user)
-  // if (user.is_admin) {
-  //   accessMethods[action](service)
-  // }
+  async.waterfall([
+    getUser.bind(null, bot, message, service),
+    accessMethods[action]
+  ], (err, result) => {
+    logError(bot, err)
+    if (cb) cb()
+  })
 }
