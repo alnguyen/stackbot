@@ -1,5 +1,7 @@
 const baseServices = {
-  get: function () {},
+  get: function (identifier, callback) {
+    callback(null, {name: identifier, disabled: false})
+  },
   save: function () {},
   all: function () {}
 }
