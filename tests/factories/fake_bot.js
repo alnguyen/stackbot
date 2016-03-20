@@ -10,10 +10,12 @@ const storage = {
   services: baseServices
 }
 
-module.exports = {
-  botkit: {
-    log: function () {},
-    storage: storage
-  },
-  reply: function (msg, reply) { return }
+module.exports = function () {
+  return {
+    botkit: {
+      log: function () {},
+      storage: storage
+    },
+    reply: function (msg, reply) { return }
+  }
 }

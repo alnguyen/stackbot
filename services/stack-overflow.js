@@ -107,7 +107,7 @@ module.exports = function (bot, message, cb) {
         logError(bot, err)
         if (cb) cb()
       }
-      if (res.disabled) {
+      if (res && res.disabled) {
         bot.reply(message, 'Feature is disabled.')
         if (cb) cb()
       } else {

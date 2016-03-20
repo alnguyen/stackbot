@@ -3,7 +3,7 @@ var expect = require('chai').expect
 var helpers = require('./helpers')
 var service = require('../services').stackOverflow
 var sinon = require('sinon')
-var fakeBot = require('./factories/fake_bot')
+var fakeBot = require('./factories/fake_bot')()
 
 const USER = 'U04N026S8'
 const CHANNEL = 'C04N12DCF'
@@ -22,7 +22,6 @@ describe('StackOverflow', function () {
   beforeEach((done) => {
     helpers.clearNock()
     helpers.mockStackUser()
-    replySpy.reset()
     done()
   })
 
@@ -33,7 +32,7 @@ describe('StackOverflow', function () {
     var expectedReply = '*Q:* `answered title`\n*A:* meatloaf ```pizza```'
 
     service(fakeBot, MESSAGE, () => {
-      expect(replySpy.calledOnce).to.equal(true)
+      expect(replySpy.called).to.equal(true)
       expect(replySpy.calledWith(MESSAGE, expectedReply)).to.equal(true)
       done()
     })
@@ -43,7 +42,7 @@ describe('StackOverflow', function () {
     helpers.mockQuestionWithoutAnswer()
     var expectedReply = 'No relevant result found. :frowning: :panda_face:'
     service(fakeBot, MESSAGE, () => {
-      expect(replySpy.calledOnce).to.equal(true)
+      expect(replySpy.called).to.equal(true)
       expect(replySpy.calledWith(MESSAGE, expectedReply)).to.equal(true)
       done()
     })
