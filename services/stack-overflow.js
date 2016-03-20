@@ -102,14 +102,25 @@ module.exports = function (bot, message, cb) {
   // Verify first word is lookup
   var firstWord = text.substr(0, text.indexOf(' '))
   if (firstWord === constants.LOOKUP) {
-    var search = text.substr(text.indexOf(' ') + 1)
-    async.waterfall([
-      requestQuestions.bind(null, bot, message, search),
-      requestAnswers,
-      replyWithAnswer
-    ], (err, result) => {
-      logError(bot, err)
-      if (cb) cb()
+    bot.botkit.storage.services.get('stack', (err, res) => {
+      if (err) {
+        logError(bot, err)
+        if (cb) cb()
+      }
+      if (res && res.disabled) {
+        bot.reply(message, 'Feature is disabled.')
+        if (cb) cb()
+      } else {
+        var search = text.substr(text.indexOf(' ') + 1)
+        async.waterfall([
+          requestQuestions.bind(null, bot, message, search),
+          requestAnswers,
+          replyWithAnswer
+        ], (err, result) => {
+          logError(bot, err)
+          if (cb) cb()
+        })
+      }
     })
   }
 }

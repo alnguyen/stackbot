@@ -3,6 +3,7 @@ var expect = require('chai').expect
 var helpers = require('./helpers')
 var service = require('../services').stackOverflow
 var sinon = require('sinon')
+var fakeBot = require('./factories/fake_bot')()
 
 const USER = 'U04N026S8'
 const CHANNEL = 'C04N12DCF'
@@ -15,16 +16,12 @@ const MESSAGE = {
   ts: '1457155238.000002',
   team: 'T04N12D43'
 }
-const fakeBot = {
-  botkit: { log: function () {} },
-  reply: function (msg, reply) { return }
-}
 
 describe('StackOverflow', function () {
   var replySpy = sinon.spy(fakeBot, 'reply')
   beforeEach((done) => {
     helpers.clearNock()
-    replySpy.reset()
+    helpers.mockStackUser()
     done()
   })
 
@@ -35,7 +32,7 @@ describe('StackOverflow', function () {
     var expectedReply = '*Q:* `answered title`\n*A:* meatloaf ```pizza```'
 
     service(fakeBot, MESSAGE, () => {
-      expect(replySpy.calledOnce).to.equal(true)
+      expect(replySpy.called).to.equal(true)
       expect(replySpy.calledWith(MESSAGE, expectedReply)).to.equal(true)
       done()
     })
@@ -45,7 +42,7 @@ describe('StackOverflow', function () {
     helpers.mockQuestionWithoutAnswer()
     var expectedReply = 'No relevant result found. :frowning: :panda_face:'
     service(fakeBot, MESSAGE, () => {
-      expect(replySpy.calledOnce).to.equal(true)
+      expect(replySpy.called).to.equal(true)
       expect(replySpy.calledWith(MESSAGE, expectedReply)).to.equal(true)
       done()
     })
