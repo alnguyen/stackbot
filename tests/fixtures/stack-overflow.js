@@ -7,7 +7,7 @@ var questionWithAnswer = {
     {
       'is_answered': true,
       'accepted_answer_id': 30000977,
-      'title': 'answered title'
+      'title': 'question'
     }
   ],
   'has_more': false
@@ -29,7 +29,8 @@ var acceptedAnswer = {
       'is_accepted': true,
       'answer_id': 30000977,
       'question_id': 30000671,
-      'body': '<p>meatloaf</p> <pre><code>pizza</code></pre>'
+      'body': '<p>answer</p> <pre><code>a</code></pre>',
+      'link': 'http://test'
     }
   ],
   'has_more': false
