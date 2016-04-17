@@ -1,4 +1,5 @@
 var async = require('async')
+var he = require('he')
 var request = require('request')
 var constants = require('../constants')
 
@@ -78,7 +79,8 @@ function requestAnswers (bot, message, question, callback) {
         return textBlock
       }).join('')
 
-      var reply = `*Q:* \`${question.title}\`\n`
+      var decodedTitle = he.decode(question.title)
+      var reply = `*Q:* \`${decodedTitle}\`\n`
       reply += `*A:* ${stripped}`
 
       callback(null, bot, message, reply)
