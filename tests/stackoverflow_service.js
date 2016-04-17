@@ -29,7 +29,7 @@ describe('StackOverflow', function () {
     helpers.mockQuestionWithAnswer()
     helpers.mockAcceptedAnswer()
 
-    var expectedReply = '*Q:* `answered title`\n*A:* meatloaf ```pizza```'
+    var expectedReply = '*Q:* `question`\n*A:* answer ```a```\n*Link:* http://test'
 
     service(fakeBot, MESSAGE, () => {
       expect(replySpy.called).to.equal(true)

@@ -4,7 +4,7 @@ var request = require('request')
 var constants = require('../constants')
 
 const answerQS = {
-  filter: 'withbody',
+  filter: '!-*f(6s6U7ofL', // Generated via stack web interface (includes body, link)
   order: 'desc',
   site: constants.API.stack.site,
   sort: 'activity'
@@ -81,7 +81,8 @@ function requestAnswers (bot, message, question, callback) {
 
       var decodedTitle = he.decode(question.title)
       var reply = `*Q:* \`${decodedTitle}\`\n`
-      reply += `*A:* ${stripped}`
+      reply += `*A:* ${stripped}\n`
+      reply += `*Link:* ${answer.link}`
 
       callback(null, bot, message, reply)
     }
