@@ -6,6 +6,7 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
+    "he": "1.0.0",
     "https-proxy-agent": "^1.0.0",
     "jfs": "^0.2.6",
     "mustache": "^2.2.1",
