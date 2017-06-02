@@ -6,22 +6,22 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
-    "he": "1.0.0",
+    "he": "1.1.1",
     "https-proxy-agent": "^1.0.0",
     "jfs": "^0.2.6",
     "mustache": "^2.2.1",
     "request": "^2.67.0",
-    "ws": "^1.0.1"
+    "ws": "^3.0.0"
   },
   "devDependencies": {
-    "async": "^1.5.2",
-    "chai": "^3.5.0",
+    "async": "^2.4.1",
+    "chai": "^4.0.1",
     "envc": "^2.4.1",
-    "eslint": "^2.2.0",
-    "mocha": "^2.4.5",
-    "nock": "^7.2.2",
-    "sinon": "^1.17.3",
-    "snazzy": "^3.0.0",
+    "eslint": "^3.19.0",
+    "mocha": "^3.4.2",
+    "nock": "^9.0.13",
+    "sinon": "^2.3.2",
+    "snazzy": "^7.0.0",
     "winston": "^2.1.1"
   },
   "scripts": {
