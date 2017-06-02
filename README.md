@@ -4,6 +4,8 @@
 StackBot
 ========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/alnguyen/stackbot.svg)](https://greenkeeper.io/)
+
 Your new favorite informational bot!
 
 Features
